@@ -1,82 +1,83 @@
-🎓 Learning Management System (LMS) – Backend
+📘 Learning Management System (LMS) — Backend
 
-A Node.js + Express.js backend for an online Learning Management System.
-It supports students, instructors, and admins, with features like authentication, course management, enrollments, quizzes, assignments, and grading.
+Node.js | Express.js | MongoDB | JWT Authentication
+
+A backend-focused Learning Management System (LMS) designed to manage users, courses, and learning resources through a secure, scalable RESTful API. This system demonstrates real-world backend architecture, authentication workflows, and structured API design suitable for integration with a frontend client.
+
+🧠 Overview
+
+This project implements the backend of a Learning Management System, handling:
+
+✔ Secure user authentication and authorization
+✔ User and course management
+✔ Role-based access control (Admin / User)
+✔ Clean RESTful API structure
+✔ Scalable backend architecture
+
+The system is built to support frontend applications (e.g., React) that consume its APIs for educational platforms, training systems, or internal learning tools.
 
 🚀 Features
+🔐 Authentication & Authorization
 
-User Authentication (JWT-based login & signup)
+JWT-based authentication
 
-Role-Based Access Control (Student, Instructor, Admin)
+Password hashing for security
 
-Course Management
+Protected routes using middleware
 
-Instructors can create courses
+Role-based access for admins and users
 
-Admin approves/rejects courses
+📚 Course Management
 
-Enrollment System
+Admins can create, update, and delete courses
 
-Students can enroll in approved courses
+Users can view available courses
 
-Assignments & Quizzes
+Structured course data stored in MongoDB
 
-Students submit assignments
+👥 User Management
 
-Attempt quizzes (only once per quiz)
+User registration and login
 
-Auto-scoring for quizzes
+Secure access to protected endpoints
 
-Grading
+Profile-based data handling
 
-Instructors review & grade assignments
+🧩 Tech Stack
+Layer	Technology
+Runtime	Node.js
+Framework	Express.js
+Database	MongoDB (Mongoose)
+Authentication	JWT
+Security	bcrypt
+API Testing	Postman
+Version Control	Git & GitHub
+📁 Project Structure
+lms-backend/
+├ controllers/
+├ middleware/
+├ models/
+├ routes/
+├ utils/
+├ .env
+├ server.js
+└ README.md
 
-Quiz scores stored automatically
 
-Admin Panel (API endpoints)
+Each layer is separated to maintain clean architecture and ease of maintenance.
 
-Approve/reject courses
+🔧 Getting Started
+Prerequisites
 
-Manage users
+Node.js installed
 
-Security
+MongoDB connection (local or cloud)
 
-Password hashing with bcrypt
+Installation
 
-JWT authentication middleware
+Clone the repository
 
-Rate limiting, Helmet, CORS
-
-Input validation with express-validator
-
-🏗️ Tech Stack
-
-Backend Framework: Node.js, Express.js
-
-Database: MongoDB (Mongoose ODM)
-
-Authentication: JWT + bcrypt
-
-Validation: express-validator
-
-Security: helmet, cors, express-rate-limit
-
-📂 Project Structure
-LMS-Backend/
-│── server.js             # App entry point
-│── config/db.js          # MongoDB connection
-│── controllers/          # Route handlers
-│── middlewares/          # Auth & error middleware
-│── models/               # Mongoose models
-│── routes/               # API routes
-│── utils/                # Helper functions
-│── package.json          # Dependencies
-
-⚙️ Setup & Installation
-
-Clone repo
-
-git clone https://github.com/your-username/lms-backend.git
+git clone https://github.com/Rihofficial/lms-backend.git
 cd lms-backend
 
 
@@ -85,59 +86,85 @@ Install dependencies
 npm install
 
 
-Setup environment variables
-Create .env file:
+Create a .env file
 
-PORT=5080
-MONGO_URI=your_mongodb_uri
+PORT=5000
+MONGO_URI=your_mongodb_connection
 JWT_SECRET=your_jwt_secret
 
 
-Run server
+Start the server
 
-npm run dev
+npm start
 
-
-Server runs at: http://localhost:5000
-
-📌 API Endpoints
-🔑 Auth
-
-POST /api/auth/register – Register user
-
-POST /api/auth/login – Login user
-
+📜 API Endpoints
+🔐 Authentication
+Method	Endpoint	Description
+POST	/api/auth/register	Register new user
+POST	/api/auth/login	Login and receive JWT
 📚 Courses
+Method	Endpoint	Description
+POST	/api/courses	Create a course (Admin only)
+GET	/api/courses	Get all courses
+PUT	/api/courses/:id	Update course (Admin only)
+DELETE	/api/courses/:id	Delete course (Admin only)
+👤 Users
+Method	Endpoint	Description
+GET	/api/users/profile	Get logged-in user profile
+🧪 How the System Works
 
-POST /api/courses – Create course (Instructor only)
+Authentication Flow
 
-GET /api/courses – List all approved courses
+User registers or logs in
 
-PUT /api/admin/courses/:id/approve – Approve course (Admin)
+Server validates credentials
 
-🎓 Enrollment
+JWT token is issued and required for protected routes
 
-POST /api/enrollments – Enroll in course (Student)
+Authorization
 
-📝 Assignments
+Middleware checks JWT validity
 
-POST /api/assignments/:id/submit – Submit assignment
+Role-based middleware restricts admin-only actions
 
-PUT /api/assignments/:id/grade – Grade assignment (Instructor)
+Data Management
 
-❓ Quizzes
+Courses and users stored in MongoDB
 
-POST /api/quiz/:id/attempt – Attempt quiz (once per student)
+Controllers handle business logic
 
-✅ Future Improvements
+Routes remain clean and minimal
 
-Add instructor dashboards (API endpoints for analytics)
+🧠 Key Backend Concepts Demonstrated
 
-Add notification system (email or in-app)
+✔ JWT authentication and middleware protection
+✔ Role-based access control
+✔ RESTful API design
+✔ Modular backend architecture
+✔ Secure password handling
 
-Add file upload for assignments (PDF/doc)
+⭐ Why This Project Matters
 
-Add course progress tracking
+This LMS backend reflects real backend responsibilities, including:
 
-👨‍💻 Author
-Abejoye Timothy
+Authentication and authorization logic
+
+Role-based permissions
+
+Clean separation of concerns
+
+API design suitable for frontend consumption
+
+It demonstrates readiness for junior backend / full-stack roles, not just tutorial-level practice.
+
+📌 Possible Improvements
+
+Add course enrollment logic
+
+Add progress tracking
+
+Implement refresh tokens
+
+Add API documentation with Swagger
+
+Add automated tests
